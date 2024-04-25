@@ -22,25 +22,17 @@ int main() {
     std::cout << "Please enter your password: " << std::endl;
     std::cin >> password;
 
-    if (user_name == user1_stored && password == pwd1_stored)
-    {
+    if (user_name == user1_stored && password == pwd1_stored) {
         std::cout << "Your access is granded, welcome back, Kevin! \n";
-    }
-    else if (user_name == user2_stored && password == pwd2_stored)
-    {
+    } else if (user_name == user2_stored && password == pwd2_stored) {
         std::cout << "Your access is granded, welcome back, Nicole! \n";
-    }
-    else if (user_name == user3_stored && password == pwd3_stored)
-    {
+    } else if (user_name == user3_stored && password == pwd3_stored) {
         std::cout << "Your access is granded, welcome back, William! \n";
-    }
-    else if (user_name == user4_stored && password == pwd4_stored)
-    {
+    } else if (user_name == user4_stored && password == pwd4_stored) {
         std::cout << "Your access is granded, welcome back, Ethan! \n";
+    } else {
+        std::cout << "Wrong User name or Password, Access Denied! \n";
     }
-    else{
-        std::cout << "Wrong User name of Password, Access Denied! \n";
-    }
-    
+
     return 0;
 }
