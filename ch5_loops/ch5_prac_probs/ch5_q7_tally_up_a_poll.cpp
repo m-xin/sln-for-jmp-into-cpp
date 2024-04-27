@@ -46,3 +46,7 @@ int main() {
 
     return 0;
 }
+
+/*
+Note: if STL can be used or array could be applied, the code would be more compacted and concise. For example, answer1_cnt ~ answer3_cnt will be set as a 3x1 array, each element is a counter, etc.s
+*/
