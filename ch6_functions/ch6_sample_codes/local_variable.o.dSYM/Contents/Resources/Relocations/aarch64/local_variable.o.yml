@@ -1,8 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     local_variable.o
-relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: __Z14changeArgumenti, symObjAddr: 0x0, symBinAddr: 0x100003F30, symSize: 0x1C }
-  - { offsetInCU: 0x2DC4, offset: 0x2DC4, size: 0x8, addend: 0x0, symName: __Z14changeArgumenti, symObjAddr: 0x0, symBinAddr: 0x100003F30, symSize: 0x1C }
-  - { offsetInCU: 0x2DEC, offset: 0x2DEC, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1C, symBinAddr: 0x100003F4C, symSize: 0x48 }
-...
