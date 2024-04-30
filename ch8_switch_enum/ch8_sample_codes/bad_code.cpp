@@ -9,3 +9,5 @@ int main() {
     }
     return 0;
 }
+
+// compiling the above code to see the error message.
