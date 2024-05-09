@@ -1,187 +1,137 @@
-/* #include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
 
-struct HighScore {
+struct Scores {
     std::string name;
     int score;
 };
 
-void AddingScore(std::vector<HighScore>& scores) {
+void AddUserScore(std::vector<Scores>& user_scores) {
     std::string name;
     int score;
-    std::cout << "Enter player's name: ";
+    std::cout << "Please enter the player's name: " << std::endl;
     std::cin >> name;
-    std::cout << "Eneter score: ";
+    std::cout << "Please enter the player's score: " << std::endl;
     std::cin >> score;
 
-    scores.push_back({name, score});
+    user_scores.push_back({name, score});
     std::cout << "High score added successfully." << std::endl;
+    std::cout << '\n';
 }
 
-void DisplayHighestScore(const std::vector<HighScore>& scores) {
-    std::cout << "Highest scores for each user: " << std::endl;
+void DisplayHighestScores(const std::vector<Scores>& user_scores) {
+    std::cout << "Highest score for each user: " << std::endl;
 
-    // find the highest score for each user:
-    std::vector<HighScore> uniqueScores;
-    for (const auto& score : scores) {
+    // traverse the vector and find the highest score
+    std::vector<Scores> unique_scores;
+    for (const auto& user_score : user_scores) {
         bool found = false;
-        for (auto& uniqueScore : uniqueScores) {
-            if (uniqueScore.name == score.name) {
-                if (uniqueScore.score < score.score) {
-                    uniqueScore.score = score.score;
+        for (auto& unique_score : unique_scores) {
+            if (unique_score.name == user_score.name) {
+                if (unique_score.score < user_score.score) {
+                    unique_score.score = user_score.score;
                 }
                 found = true;
                 break;
             }
         }
         if (!found) {
-            uniqueScores.push_back(score);
+            unique_scores.push_back(user_score);
         }
     }
     // display the highest scores
-    for (const auto& user : users) {
-        std::cout << uesr << std::endl;
-    }
-} */
-
-#include <iostream>
-#include <string>
-#include <vector>
-
-using namespace std;
-
-// Structure to store a user's high score
-struct HighScore {
-    string name;
-    int score;
-};
-
-// Function to add a new high score
-void addHighScore(vector<HighScore>& scores) {
-    string name;
-    int score;
-
-    cout << "Enter player name: ";
-    cin >> name;
-
-    cout << "Enter score: ";
-    cin >> score;
-
-    scores.push_back({name, score});
-    cout << "High score added successfully." << endl;
-}
-
-// Function to display the highest score for each user
-void displayHighestScores(const vector<HighScore>& scores) {
-    cout << "Highest scores for each user:" << endl;
-
-    // Find the highest score for each user
-    vector<HighScore> uniqueScores;
-    for (const auto& score : scores) {
-        bool found = false;
-        for (auto& uniqueScore : uniqueScores) {
-            if (uniqueScore.name == score.name) {
-                if (uniqueScore.score < score.score) {
-                    uniqueScore.score = score.score;
-                }
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            uniqueScores.push_back(score);
-        }
-    }
-
-    // Display the highest scores
-    for (const auto& score : uniqueScores) {
-        cout << score.name << ": " << score.score << endl;
+    for (const auto& user_score : unique_scores) {
+        std::cout << user_score.name << ": " << user_score.score << std::endl;
     }
 }
 
-// Function to display all scores for a particular user
-void displayScoresForUser(const vector<HighScore>& scores) {
-    string name;
-    cout << "Enter player name: ";
-    cin >> name;
+void DisplayOneUserScores(const std::vector<Scores>& user_scores) {
+    std::string name;
+    std::cout << "Enter the player's name: ";
+    std::cin >> name;
 
-    cout << "All scores for " << name << ":" << endl;
-    for (const auto& score : scores) {
-        if (score.name == name) {
-            cout << score.score << endl;
+    std::cout << "All scores for " << name << ":" << std::endl;
+    for (const auto& user_score : user_scores) {
+        if (user_score.name == name) {
+            std::cout << user_score.score << std::endl;
+            std::cout << '\n';
         }
     }
 }
 
-// Function to display all scores from all users
-void displayAllScores(const vector<HighScore>& scores) {
-    cout << "All scores from all users:" << endl;
-    for (const auto& score : scores) {
-        cout << score.name << ": " << score.score << endl;
+void DisplayAllUsersScores(const std::vector<Scores>& user_scores) {
+    std::cout << "All scores from all user: " << std::endl;
+    for (const auto& user_score : user_scores) {
+        std::cout << user_score.name << ": " << user_score.score << std::endl;
     }
 }
 
-// Function to display the list of users
-void displayUserList(const vector<HighScore>& scores) {
-    cout << "List of users:" << endl;
-    vector<string> users;
-    for (const auto& score : scores) {
+void DisplayUserList(const std::vector<Scores>& user_scores) {
+    std::cout << "List of users: " << std::endl;
+    std::vector<std::string> users;
+    for (const auto& user_score : user_scores) {
         bool found = false;
         for (const auto& user : users) {
-            if (user == score.name) {
+            if (user == user_score.name) {
                 found = true;
                 break;
             }
         }
         if (!found) {
-            users.push_back(score.name);
+            users.push_back(user_score.name);
         }
     }
     for (const auto& user : users) {
-        cout << user << endl;
+        std::cout << user << std::endl;
+    }
+}
+
+void UserMenuTracking(int choice, std::vector<Scores>& user_scores) {
+    switch (choice) {
+        case 1:
+            AddUserScore(user_scores);
+            break;
+        case 2:
+            DisplayHighestScores(user_scores);
+            break;
+        case 3:
+            DisplayOneUserScores(user_scores);
+            break;
+        case 4:
+            DisplayAllUsersScores(user_scores);
+            break;
+        case 5:
+            DisplayUserList(user_scores);
+            break;
+        default:
+            std::cout << "Invalid choice. Please try again." << std::endl;
+            break;
     }
 }
 
 int main() {
-    vector<HighScore> scores;
-
+    std::vector<Scores> user_scores;
     int choice;
     while (true) {
-        cout << "\nGame High Scores Menu:" << endl;
-        cout << "1. Add new high score" << endl;
-        cout << "2. Display highest scores for each user" << endl;
-        cout << "3. Display all scores for a particular user" << endl;
-        cout << "4. Display all scores from all users" << endl;
-        cout << "5. Display list of users" << endl;
-        cout << "6. Exit" << endl;
+        std::cout << "\nGame High Scores Menu:" << std::endl;
+        std::cout << "1. Add new high score" << std::endl;
+        std::cout << "2. Display highest scores for each user" << std::endl;
+        std::cout << "3. Display all scores for a particular user" << std::endl;
+        std::cout << "4. Display all scores from all users" << std::endl;
+        std::cout << "5. Display list of users" << std::endl;
+        std::cout << "6. Exit" << std::endl;
 
-        cout << "Enter your choice: ";
-        cin >> choice;
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
 
-        switch (choice) {
-            case 1:
-                addHighScore(scores);
-                break;
-            case 2:
-                displayHighestScores(scores);
-                break;
-            case 3:
-                displayScoresForUser(scores);
-                break;
-            case 4:
-                displayAllScores(scores);
-                break;
-            case 5:
-                displayUserList(scores);
-                break;
-            case 6:
-                cout << "Exiting program..." << endl;
-                return 0;
-            default:
-                cout << "Invalid choice. Please try again." << endl;
-                break;
+        if (choice == 6) {
+            std::cout << "Exiting program..." << std::endl;
+            return 0;
         }
+
+        UserMenuTracking(choice, user_scores);
     }
+
+    return 0;
 }
