@@ -1,23 +1,20 @@
 #include <iostream>
-#include <string>
-
-std::string* NameReturn(std::string last_name, std::string first_name) {
-    static std::string name[] = {first_name, last_name};
-    return name;
-}
 
 int main() {
-    while (true) {
-        std::cout << "Please enter your last name: " << std::endl;
-        std::string first_name;
-        std::cin >> first_name;
+    int x;  // a normal integer
+    std::cout << &x << std::endl;
+    int *p_int = nullptr;  // a pointer to an integer
+    std::cout << p_int << std::endl;
 
-        std::cout << "Please enter your first name: " << std::endl;
-        std::string last_name;
-        std::cin >> last_name;
+    p_int = &x;  // Read it, "assign the address of x to p_int"
 
-        std::string* name = NameReturn(last_name, first_name);
-        std::cout << "The user's name is: " << last_name << ", " << first_name << std::endl;
-    }
+    std::cout << "Please enter a number: ";
+    std::cin >> x;  // put a value in x, we could also use *p_int here
+    std::cout << p_int << std::endl;
+    std::cout << *p_int << '\n';  // not the use of the * to get the value
+    *p_int = 10;
+    std::cout << x << '\n';  // outputs 10 again.
+    std::cout << p_int << std::endl;
+
     return 0;
 }
