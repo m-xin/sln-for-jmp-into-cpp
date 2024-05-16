@@ -1,7 +1,7 @@
 #include <iostream>
 
 void MultiplicationTable(int rows, int cols) {
-    //
+    // this is the standard way to initialize 2-D array
     int** matrix = new int*[rows];
     for (int i = 0; i < rows; i++) {
         matrix[i] = new int[cols];
@@ -22,7 +22,7 @@ void MultiplicationTable(int rows, int cols) {
         std::cout << '\n';
     }
 
-    // free memory
+    // free memory, must be done here, otherwise it would cause segment fault.
     for (size_t i = 0; i < rows; i++) {
         delete[] matrix[i];
     }
