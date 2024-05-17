@@ -21,6 +21,7 @@ int ***ProductTableOf3DArray(const int length, const int width, const int height
             }
         }
     }
+    return arr;
 }
 
 void PrintTable(int ***arr,
